@@ -335,11 +335,8 @@ export const Certifications: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
+          className="grid-3-cols"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            columnGap: '32px',
-            rowGap: '44px',
             marginTop: '12px'
           }}
         >

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ArrowRight, Mail } from 'lucide-react';
+import profileImg from '../assets/profile.png';
 
 const Github: React.FC<{ size?: number; style?: React.CSSProperties }> = ({ size = 20, style }) => (
   <svg 
@@ -39,58 +40,39 @@ const Linkedin: React.FC<{ size?: number; style?: React.CSSProperties }> = ({ si
 
 
 
-const ProfilePlaceholder: React.FC = () => {
+
+const ProfilePhoto: React.FC = () => {
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '380px', aspectRatio: '3/4', margin: '0 auto' }}>
-      {/* Subtle Orange Backing Glow */}
-      <motion.div 
-        animate={{
-          scale: [1, 1.05, 1],
-          opacity: [0.9, 1, 0.9],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      height: '100%',
+    }}>
+      <img
+        src={profileImg}
+        alt="Moganavasudev P — Software Developer"
         style={{
-          position: 'absolute',
-          inset: '-15%',
-          background: 'radial-gradient(circle, rgba(255, 140, 0, 0.15) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-          zIndex: 0,
-          pointerEvents: 'none'
-        }} 
-      />
-      
-      {/* Frame Container */}
-      <div 
-        className="glass-card" 
-        style={{
-          position: 'relative',
           width: '100%',
           height: '100%',
-          borderRadius: '24px',
-          border: '1px solid rgba(255, 140, 0, 0.18)',
-          boxShadow: '0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(255, 140, 0, 0.03)',
-          overflow: 'hidden',
-          zIndex: 1,
-          transition: 'var(--transition-smooth)'
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = 'rgba(255, 140, 0, 0.4)';
-          e.currentTarget.style.boxShadow = '0 30px 60px rgba(255, 140, 0, 0.08), inset 0 0 40px rgba(255, 140, 0, 0.06)';
-          e.currentTarget.style.transform = 'translateY(-6px) scale(1.02)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = 'rgba(255, 140, 0, 0.18)';
-          e.currentTarget.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(255, 140, 0, 0.03)';
-          e.currentTarget.style.transform = 'translateY(0px) scale(1)';
-        }}
+          objectFit: 'cover',
+          objectPosition: 'center 5%',
+          display: 'block',
+          /* Fade left, right, top & bottom edges into the dark page */
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 4%, black 82%, transparent 100%)',
+          WebkitMaskComposite: 'destination-in',
+          maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 4%, black 82%, transparent 100%)',
+          maskComposite: 'intersect',
+        } as React.CSSProperties}
       />
     </div>
   );
 };
+
+
+
+
+
+
 
 export const Hero: React.FC = () => {
   const stats = [
@@ -258,14 +240,12 @@ export const Hero: React.FC = () => {
               
               <a 
                 href="/resume.pdf" 
-                download="Moganavasudev_Resume.pdf" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-secondary"
-                onClick={() => {
-                  console.log('Downloading Resume...');
-                }}
               >
                 <FileText size={16} style={{ color: 'var(--accent)' }} />
-                <span>Download Resume</span>
+                <span>View Resume</span>
               </a>
 
               <button 
@@ -342,14 +322,19 @@ export const Hero: React.FC = () => {
 
           </div>
 
-          {/* Right Column Profile Image Placeholder Frame (Replaced terminal scanner) */}
+          {/* Right Column - Profile Photo */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            style={{ width: '100%' }}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            style={{
+              width: '100%',
+              alignSelf: 'stretch',
+              display: 'flex',
+              alignItems: 'stretch',
+            }}
           >
-            <ProfilePlaceholder />
+            <ProfilePhoto />
           </motion.div>
         </div>
       </div>

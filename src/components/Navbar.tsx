@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+
 
 interface NavLink {
   label: string;
@@ -91,30 +92,22 @@ export const Navbar: React.FC = () => {
         }}>
           {/* Logo */}
           <a href="#home" onClick={() => handleLinkClick('#home')} style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
             color: '#fff',
             textDecoration: 'none',
             fontSize: '18px',
             fontWeight: 700,
             letterSpacing: '-0.03em',
           }}>
-            <Terminal size={18} style={{ color: 'var(--accent)' }} />
-            <span>mogana<span style={{ color: 'var(--accent)' }}>.dev</span></span>
+            <span>Moganavasudev P</span>
           </a>
 
           {/* Desktop Navigation */}
           <nav className="desktop-nav">
             <ul style={{
               display: 'flex',
-              gap: '6px',
+              gap: '2px',
               listStyle: 'none',
-              padding: '4px',
-              background: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
-              borderRadius: '24px',
-              backdropFilter: 'blur(8px)',
+              padding: 0,
             }}>
               {links.map((link) => {
                 const isActive = activeSection === link.href.substring(1);
@@ -138,20 +131,6 @@ export const Navbar: React.FC = () => {
                         zIndex: 1,
                       }}
                     >
-                      {isActive && (
-                        <motion.span
-                          layoutId="activePill"
-                          style={{
-                            position: 'absolute',
-                            inset: 0,
-                            backgroundColor: 'rgba(255, 140, 0, 0.12)',
-                            border: '1px solid rgba(255, 140, 0, 0.25)',
-                            borderRadius: '20px',
-                            zIndex: -1,
-                          }}
-                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                        />
-                      )}
                       {link.label}
                     </a>
                   </li>
@@ -164,7 +143,8 @@ export const Navbar: React.FC = () => {
           <div className="desktop-nav">
             <a 
               href="/resume.pdf" 
-              download="Moganavasudev_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-secondary" 
               style={{
                 padding: '8px 16px',
@@ -254,12 +234,13 @@ export const Navbar: React.FC = () => {
               <li style={{ marginTop: '8px' }}>
                 <a
                   href="/resume.pdf"
-                  download="Moganavasudev_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn btn-primary"
                   style={{ width: '100%' }}
                   onClick={() => setIsOpen(false)}
                 >
-                  Resume
+                  View Resume
                 </a>
               </li>
             </ul>

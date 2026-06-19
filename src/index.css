@@ -80,9 +80,15 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 12px;
+  }
 }
 
 /* Typography styles */
@@ -207,6 +213,16 @@ p {
   box-shadow: 0 0 15px rgba(255, 140, 0, 0.12), inset 0 0 8px rgba(255, 140, 0, 0.02) !important;
 }
 
+/* Navigation List */
+nav ul {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
 /* Section common styles */
 .section {
   padding: 50px 0;
@@ -259,8 +275,8 @@ p {
 }
 @media (min-width: 992px) {
   .hero-grid {
-    grid-template-columns: 1.25fr 0.75fr !important;
-    gap: clamp(64px, 7vw, 120px) !important;
+    grid-template-columns: 1.1fr 0.9fr !important;
+    gap: clamp(32px, 4vw, 64px) !important;
   }
   .hero-stats-grid {
     grid-template-columns: repeat(4, 1fr) !important;
@@ -282,6 +298,22 @@ p {
 @media (min-width: 992px) {
   .contact-grid {
     grid-template-columns: 1fr 1.2fr !important;
+  }
+}
+
+.grid-3-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+@media (min-width: 768px) {
+  .grid-3-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid-3-cols {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -361,4 +393,30 @@ p {
     margin-top: -150px;
   }
 }
+
+/* Achievements Custom centered flex layout */
+.achievements-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 12px;
+}
+
+.achievements-card {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .achievements-card {
+    width: calc((100% - 32px) / 2);
+  }
+}
+
+@media (min-width: 1024px) {
+  .achievements-card {
+    width: calc((100% - 64px) / 3);
+  }
+}
+
 

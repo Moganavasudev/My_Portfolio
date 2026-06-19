@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MessageSquare, Send, CheckCircle2, User, HelpCircle, Phone, MapPin, FileText } from 'lucide-react';
+import { Mail, MessageSquare, Send, CheckCircle2, User, HelpCircle, Phone, MapPin, FileText, Tag } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import emailjs from '@emailjs/browser';
 
@@ -44,6 +44,7 @@ const Linkedin: React.FC<{ size?: number; style?: React.CSSProperties }> = ({ si
 export const Contact: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -62,6 +63,12 @@ export const Contact: React.FC = () => {
     if (!emailRegex.test(email)) {
       setStatus('error');
       setErrorMessage('Please enter a valid email address.');
+      return;
+    }
+
+    if (!subject.trim()) {
+      setStatus('error');
+      setErrorMessage('Please enter a subject.');
       return;
     }
     
@@ -83,6 +90,7 @@ export const Contact: React.FC = () => {
         setStatus('success');
         setName('');
         setEmail('');
+        setSubject('');
         setMessage('');
         
         confetti({
@@ -101,6 +109,7 @@ export const Contact: React.FC = () => {
       {
         from_name: name,
         from_email: email,
+        subject: subject,
         message: message,
         to_name: 'Moganavasudev',
       },
@@ -110,6 +119,7 @@ export const Contact: React.FC = () => {
       setStatus('success');
       setName('');
       setEmail('');
+      setSubject('');
       setMessage('');
       
       confetti({
@@ -244,12 +254,13 @@ export const Contact: React.FC = () => {
             <div>
               <a 
                 href="/resume.pdf" 
-                download="Moganavasudev_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-secondary"
                 style={{ alignSelf: 'flex-start', padding: '10px 20px', gap: '10px', fontSize: '14px' }}
               >
                 <FileText size={16} style={{ color: 'var(--accent)' }} />
-                <span>Download Resume</span>
+                <span>View / Download Resume</span>
               </a>
             </div>
 
@@ -458,6 +469,40 @@ export const Contact: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="john@example.com"
+                      className="form-input"
+                      style={{
+                        width: '100%',
+                        padding: '12px 16px',
+                        backgroundColor: 'rgba(255, 255, 255, 0.02)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '8px',
+                        color: '#fff',
+                        fontSize: '15px',
+                        fontFamily: 'var(--font-sans)',
+                        outline: 'none',
+                        transition: 'var(--transition-fast)'
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <label htmlFor="form-subject" style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: 'var(--text-secondary)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px'
+                    }}>
+                      <Tag size={14} style={{ color: 'var(--accent)' }} />
+                      <span>Subject</span>
+                    </label>
+                    <input 
+                      id="form-subject"
+                      type="text" 
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      placeholder="Project Collaboration"
                       className="form-input"
                       style={{
                         width: '100%',

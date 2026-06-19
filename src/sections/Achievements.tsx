@@ -79,12 +79,7 @@ export const Achievements: React.FC = () => {
           </p>
         </div>
 
-        {/* Flex Wrap Center layout to center the last 2 cards */}
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '24px',
+        <div className="achievements-container" style={{
           marginTop: '12px'
         }}>
           {achievements.map((item, index) => (
@@ -99,7 +94,7 @@ export const Achievements: React.FC = () => {
               }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="glass-card"
+              className="glass-card achievements-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -110,10 +105,7 @@ export const Achievements: React.FC = () => {
                 background: 'rgba(10, 10, 10, 0.7)',
                 cursor: 'default',
                 transition: 'border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease',
-                width: '100%',
-                maxWidth: '360px',
                 minHeight: '340px',
-                flex: '1 1 320px'
               }}
             >
               {/* Giant ambient background watermark text */}
